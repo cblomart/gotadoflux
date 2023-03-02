@@ -1,14 +1,14 @@
 # definitive config file if present
-goviflux.json
+gotadoflux.json
 __debug__bin.json
 
 # token cache if present
-goviflux.token
+gotadoflux.token
 __debug__bin.token
 
 # binary file if generated
-goviflux
-goviflux.exe
+gotadoflux
+gotapoflux.exe
 
 #ignore file locks
 *.lock
