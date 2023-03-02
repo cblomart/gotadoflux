@@ -243,7 +243,7 @@ func main() {
 	}
 
 	// create the daemon
-	srv, err := daemon.New("goviflux", "Viessmann logger to influx", daemon.SystemDaemon, dependencies...)
+	srv, err := daemon.New("gotadoflux", "Tado logger to influx", daemon.SystemDaemon, dependencies...)
 	if err != nil {
 		log.Println("Error: ", err)
 		os.Exit(1)
