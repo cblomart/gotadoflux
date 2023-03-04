@@ -28,6 +28,7 @@ var (
 	influx       client.Client
 	points       = []*client.Point{}
 	dependencies = []string{}
+	lastSync     = time.Time{}
 )
 
 // function to collect data
@@ -65,10 +66,13 @@ func collect() {
 			}
 		}
 		for zoneId, state := range states.ZoneStates {
+			zoneName := zones[home.Id][zoneId]
 			if state.SensorDataPoints.InsideTemperature == nil {
 				continue
 			}
-			zoneName := zones[home.Id][zoneId]
+			if state.SensorDataPoints.InsideTemperature.Timestamp.Before(lastSync) {
+				log.Printf("Skipping %s in %s: data before last sync", zoneName, home.Name)
+			}
 			name := fmt.Sprintf("%s.%s", home.Name, zoneName)
 			powerPc := float32(0.0)
 			if state.ActivityDataPoints.AcPower != nil {
