@@ -106,6 +106,10 @@ func collect() {
 			points = append(points, point)
 		}
 	}
+	if len(points) == 0 {
+		lastSync = time.Now()
+		log.Println("no points to send to influx")
+	}
 	bps, err := client.NewBatchPoints(client.BatchPointsConfig{
 		Precision: "s",
 		Database:  conf.Influx.Database,
