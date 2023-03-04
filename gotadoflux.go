@@ -119,6 +119,7 @@ func collect() {
 		log.Printf("cloud not write to influx: %s", err)
 		return
 	}
+	lastSync = time.Now()
 	log.Printf("written %d points to influx", len(points))
 	points = nil
 }
