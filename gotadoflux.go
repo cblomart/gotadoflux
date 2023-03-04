@@ -72,6 +72,7 @@ func collect() {
 			}
 			if state.SensorDataPoints.InsideTemperature.Timestamp.Before(lastSync) {
 				log.Printf("Skipping %s in %s: data before last sync", zoneName, home.Name)
+				continue
 			}
 			name := fmt.Sprintf("%s.%s", home.Name, zoneName)
 			powerPc := float32(0.0)
